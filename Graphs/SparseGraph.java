@@ -27,6 +27,7 @@ public class SparseGraph extends   Graph
     public void addEdge(int vertex,Edge e)
     {
         ++edgeCount;
+        e.from=vertex;
         incidentEdges[vertex].add(e);
     }
 

@@ -11,6 +11,7 @@ import java.util.*;
  */
 public class PrimsAlgorithms
 {
+   /* returns a tree which is an MST of given graph G*/
    public static Graph getMstUsingHeap(Graph g)
    {
 
