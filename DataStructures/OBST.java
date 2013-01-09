@@ -10,6 +10,10 @@ import java.util.List;
  * Time: 7:13 PM
  * To change this template use File | Settings | File Templates.
  */
+/* Example of usage:
+        OBST O=new OBST(new ArrayList<Double>(Arrays.asList(0.05,0.4,0.08,0.04,0.1,0.1,0.23)));
+        out.println(O.build(0,6));
+ */
 public class OBST
 {
      List<Double> frequencies;
