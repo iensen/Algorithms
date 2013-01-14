@@ -28,8 +28,6 @@ public class KruskalAlgorithm
        return answer;
   }
 
-
-
     private static ArrayList<Edge> getSortedEdgeList(Graph g) {
     ArrayList <Edge> answerList=new ArrayList<Edge>();
     for(int i=0;i<g.getVertexCount();i++) {

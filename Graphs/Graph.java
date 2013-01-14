@@ -19,6 +19,9 @@ public abstract class Graph
     {
         return vertexCount;
     }
+    public int getEdgeCount() {
+        return edgeCount;
+    }
     public abstract List<Edge> getIncidentEdges(int vertexId);
 
 }
