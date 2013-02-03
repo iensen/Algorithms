@@ -23,5 +23,5 @@ public abstract class Graph
         return edgeCount;
     }
     public abstract List<Edge> getIncidentEdges(int vertexId);
-
+    public abstract void clearIncidentEdges(int vertexId);
 }

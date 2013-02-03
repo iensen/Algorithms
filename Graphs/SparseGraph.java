@@ -36,4 +36,10 @@ public class SparseGraph extends   Graph
     {
         return incidentEdges[vertexId];
     }
+
+    @Override
+    public void clearIncidentEdges(int vertexId)
+    {
+        incidentEdges[vertexId].clear();
+    }
 }
