@@ -19,6 +19,12 @@ public abstract class Graph
     {
         return vertexCount;
     }
+
+    public void addEdge(int from,int to) {
+        Edge e=new Edge(to);
+        addEdge(from,e);
+    }
+
     public int getEdgeCount() {
         return edgeCount;
     }

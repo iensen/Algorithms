@@ -59,9 +59,10 @@ public class InputReader {
         try {
             return in.readLine();
         } catch (IOException e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+           // e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+            return null;
         }
-        return "";
+
     }
     public char nextChar()  {
         try {

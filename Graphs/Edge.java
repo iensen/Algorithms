@@ -15,18 +15,18 @@ public class Edge implements Comparable<Edge>
     public  Edge(int to)
     {
         //this.from=from;
-        this.to=(short)to;
+        this.to=to;
     }
     public Edge(int to,int weight)
     {
        this(to);
-       this.weight=(short)weight;
+       this.weight=weight;
     }
     public Edge(int from,int to,int weight)
     {
         this(to);
-        this.from=(short)from;
-        this.weight=(short)weight;
+        this.from=from;
+        this.weight=weight;
     }
     public int compareTo(Edge edge)
     {
