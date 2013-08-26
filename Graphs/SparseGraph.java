@@ -1,6 +1,7 @@
 package iensen.Graphs;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -12,34 +13,50 @@ import java.util.List;
  */
 public class SparseGraph extends   Graph
 {
-    List[] incidentEdges;
-    public SparseGraph(int vertexCount)
+    public int []From;
+    public int []To;
+    public int Head[];
+    public int Next[];
+    public SparseGraph(int vertexCount,int edgeCapacity)
     {
+        From=new int[edgeCapacity];
+        To=new int[edgeCapacity];
+        Head=new int[vertexCount];
+        Next=new int[edgeCapacity];
+        Arrays.fill(Next,-1);
+        Arrays.fill(Head,-1);
+
         this.vertexCount=vertexCount;
         edgeCount=0;
-        incidentEdges=new ArrayList[vertexCount];
-        for(int i=0;i<vertexCount;i++)
-        {
-            incidentEdges[i]=new ArrayList<Edge>();
-        }
     }
+
+
+
     @Override
-    public void addEdge(int vertex,Edge e)
-    {
+    public void addEdge(int from, int to) {
+        From[edgeCount]=from;
+        To[edgeCount]=to;
+        Next[edgeCount]=Head[from];
+        Head[from]=edgeCount;
         ++edgeCount;
-        e.from=vertex;
-        incidentEdges[vertex].add(e);
     }
 
     @Override
     public List<Edge> getIncidentEdges(int vertexId)
     {
-        return incidentEdges[vertexId];
+       ArrayList<Edge> list=new ArrayList<Edge>();
+       int p=Head[vertexId];
+       while(p!=-1) {
+           Edge e=new Edge(To[p]);
+           list.add(e);
+           p=Next[p];
+       }
+        return list;
     }
 
     @Override
     public void clearIncidentEdges(int vertexId)
     {
-        incidentEdges[vertexId].clear();
+        Head[vertexId]=-1;
     }
 }

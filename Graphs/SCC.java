@@ -26,7 +26,7 @@ public class SCC
 
     private void buildTransposedGraph() {
 
-        transposedGraph=new SparseGraph(graph.getVertexCount());
+        transposedGraph=new SparseGraph(graph.getVertexCount(),graph.getEdgeCount());
 
         for(int v=0;v<graph.getVertexCount();v++) {
             for(Edge e:graph.getIncidentEdges(v)) {
