@@ -20,7 +20,9 @@ public abstract class Graph
     }
 
     abstract public void addEdge(int from,int to);
+
     abstract public void addEdge(int from,int to, int weight);
+
     public int getEdgeCount() {
         return edgeCount;
     }

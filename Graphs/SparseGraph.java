@@ -17,7 +17,9 @@ public class SparseGraph extends   Graph
     public int []To;
     public int Head[];
     public int Next[];
+
     public int Weight[];
+
     public SparseGraph(int vertexCount,int edgeCapacity)
     {
         From=new int[edgeCapacity];

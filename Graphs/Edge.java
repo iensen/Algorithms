@@ -10,8 +10,8 @@ package iensen.Graphs;
 public class Edge implements Comparable<Edge>
 {
    int from;
-   int to;
-   int weight;
+   public int to;
+   public int weight;
 
     public int getFrom()
     {
