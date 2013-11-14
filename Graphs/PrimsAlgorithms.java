@@ -15,7 +15,7 @@ public class PrimsAlgorithms
    public static Graph getMstUsingHeap(Graph g)
    {
 
-       Graph mst=new SparseGraph(g.getVertexCount());
+       Graph mst=new SparseGraph(g.getVertexCount(),g.getEdgeCount());
        int n = g.edgeCount;
        boolean[] used = new boolean[n];
        int[] priority = new int[n];
@@ -30,7 +30,7 @@ public class PrimsAlgorithms
            int u = (int) v.vertexId;
            if (used[u])
                continue;
-           if(prev[u]!=-1)mst.addEdge(prev[u],new Edge(u,v.minWeight));
+           if(prev[u]!=-1)mst.addEdge(prev[u],u,v.minWeight);
            used[u] = true;
            for (Edge e : g.getIncidentEdges(u)) {
                int nextV = e.to;

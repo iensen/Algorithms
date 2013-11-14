@@ -9,13 +9,14 @@ package iensen.Misc;
  */
 public class BitUtils
 {
-    public static void setBit(long number, int bitIdx,boolean bit) {
+    public static long setBit(long number, int bitIdx,boolean bit) {
         if(bit) {
             number|= (1l << bitIdx);
         }
         else {
             number&=~(1l<<bitIdx);
         }
+        return number;
     }
 
     public static boolean getBit(long number,int bitIdx) {

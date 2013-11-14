@@ -13,7 +13,7 @@ import java.util.Collections;
 public class KruskalAlgorithm
 {
   public static Graph getMST(Graph g) {
-       Graph answer=new SparseGraph(g.getVertexCount());
+       Graph answer=new SparseGraph(g.getVertexCount(),g.getEdgeCount());
        int V=g.getVertexCount();
        DJS djs=new DJS(V);
        ArrayList<Edge> list=getSortedEdgeList(g);
@@ -21,7 +21,8 @@ public class KruskalAlgorithm
            int id1=djs.findId(e.from);
            int id2=djs.findId(e.to);
            if(id1!=id2) {
-              answer.addEdge(e.from,new Edge(e.to,e.weight));
+
+              answer.addEdge(e.from,e.to,e.weight);
               djs.unionSets(id1,id2);
            }
        }
