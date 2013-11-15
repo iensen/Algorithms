@@ -19,8 +19,8 @@ public class Combinatorics
         return C;
     }
 
-    public static int[][] getBinomCoefsModulo(int maxn,int modulo) {
-        int C[][]=new int[maxn+1][maxn+1];
+    public static long[][] getBinomCoefsModulo(int maxn,int modulo) {
+        long C[][]=new long[maxn+1][maxn+1];
         for (int n=0; n<=maxn; ++n) {
             C[n][0] = C[n][n] = 1%modulo;
             for (int k=1; k<n; ++k)
