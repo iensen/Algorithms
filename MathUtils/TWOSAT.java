@@ -34,7 +34,7 @@ class TWOSAT
     }
 
     public boolean checkSatisfability() {
-        Graph g=new SparseGraph(variableCount*2+1);
+        SparseGraph g=new SparseGraph(variableCount*2+1,clauses.size()*2);
 
         for(Pair<Integer,Integer> clause:clauses) {
             g.addEdge(-clause.first+variableCount,clause.second+variableCount);

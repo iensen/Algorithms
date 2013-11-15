@@ -12,19 +12,15 @@ import java.util.List;
  */
 public abstract class Graph
 {
-    int vertexCount;
-    int edgeCount;
-    public abstract void addEdge(int vertex,Edge e);
+    public int vertexCount;
+    public int edgeCount;
     public int getVertexCount()
     {
         return vertexCount;
     }
 
-    public void addEdge(int from,int to) {
-        Edge e=new Edge(to);
-        addEdge(from,e);
-    }
-
+    abstract public void addEdge(int from,int to);
+    abstract public void addEdge(int from,int to, int weight);
     public int getEdgeCount() {
         return edgeCount;
     }
