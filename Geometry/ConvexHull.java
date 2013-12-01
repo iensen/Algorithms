@@ -3,6 +3,7 @@ package iensen.Geometry;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 
 
 /**
@@ -20,7 +21,7 @@ public class ConvexHull {
            return Arrays.copyOf(points,points.length);
        }
        // sort all the points by x,y
-        Arrays.sort(points);
+        Arrays.sort(points, new PointComparator());
         // take the first and the last point
         Point2D pointF = points[0];
         Point2D pointL = points[points.length-1];
@@ -58,6 +59,19 @@ public class ConvexHull {
         for (int i=lower.size()-2; i>0; --i)
             result[idx++]=lower.get(i);
         return result;
+
+    }
+}
+
+class PointComparator implements Comparator<Point2D> {
+
+    @Override
+    public int compare(Point2D o1, Point2D o2) {
+        final double eps = 1e-8;
+        if(Math.abs(o1.getX()- o2.getX())>=eps) {
+            return o1.getX()-o2.getX()>0?1:-1;
+        }
+        return o1.getY()-o2.getY()>0?1:-1;
 
     }
 }
