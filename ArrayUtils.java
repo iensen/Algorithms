@@ -11,7 +11,7 @@ import java.util.Random;
  */
 public class ArrayUtils
 {
-        public static void shuffle(int[] a) {
+        public static void shuffle(Object[] a) {
             int n = a.length;
             Random random = new Random();
 
@@ -21,8 +21,8 @@ public class ArrayUtils
             }
         }
 
-        private static void swap(int[] a, int i, int changeIdx) {
-            int temp = a[i];
+        private static void swap(Object[] a, int i, int changeIdx) {
+            Object temp = a[i];
             a[i] = a[changeIdx];
             a[changeIdx] = temp;
         }

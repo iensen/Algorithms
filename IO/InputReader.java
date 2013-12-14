@@ -66,6 +66,31 @@ public class InputReader {
         return sign * res;
     }
 
+    public long nextLong() {
+
+        int c;
+        do {
+            c = readChar();
+        }while(isWhitespace(c));
+
+        int sign = 1;
+        if (c == '-') {
+            c = readChar();
+            sign = -1;
+
+        }
+        long res = 0;
+        do {
+            res *= 10;
+            res += c - '0';
+            c = readChar();
+        } while (!isWhitespace(c) && c!=-1);
+        return sign * res;
+    }
+
+
+
+
     public String nextToken() {
         int c;
         do {
