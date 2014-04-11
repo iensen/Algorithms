@@ -12,12 +12,12 @@ public class Johnson implements AllPairsShortestPathAlgo
     @Override
     public long[][] getDistances(Graph g)
     {
-        Graph graph2=new SparseGraph(g.getVertexCount()+1);
+        Graph graph2=new SparseGraph(g.getVertexCount()+1,g.getEdgeCount()+g.getVertexCount());
         for(int i=0;i<g.getVertexCount();i++) {
             for(Edge e:g.getIncidentEdges(i)) {
-                graph2.addEdge(i,e);
+                graph2.addEdge(i,e.to);
             }
-            graph2.addEdge(g.getVertexCount(),new Edge(i,0));
+            graph2.addEdge(g.getVertexCount(),i);
         }
 
         long []weights=new FordBellman().run(graph2,g.getVertexCount());
