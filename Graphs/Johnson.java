@@ -12,12 +12,13 @@ public class Johnson implements AllPairsShortestPathAlgo
     @Override
     public long[][] getDistances(Graph g)
     {
-        Graph graph2=new SparseGraph(g.getVertexCount()+1,g.getEdgeCount()+g.getVertexCount());
+
+        Graph graph2=new SparseGraph(g.getVertexCount()+1,g.getEdgeCount()+g.getVertexCount()+1);
         for(int i=0;i<g.getVertexCount();i++) {
             for(Edge e:g.getIncidentEdges(i)) {
-                graph2.addEdge(i,e.to);
+                graph2.addEdge(i,e.to,e.weight);
             }
-            graph2.addEdge(g.getVertexCount(),i);
+            graph2.addEdge(g.getVertexCount(),i,0);
         }
 
         long []weights=new FordBellman().run(graph2,g.getVertexCount());
@@ -26,7 +27,7 @@ public class Johnson implements AllPairsShortestPathAlgo
         }
         long [][] answer=new long[g.getVertexCount()][g.getVertexCount()];
         for(int i=0;i<g.getVertexCount();i++) {
-            long [] distances=new Djikstra(weights).run(g,i,-1);
+            long [] distances=new Djikstra(weights).run((SparseGraph)g,i,-1);
             for(int j=0;j<distances.length;j++) {
                 if(distances[j]==Long.MAX_VALUE) {
                     answer[i][j]=Long.MAX_VALUE;

@@ -17,6 +17,12 @@ public class SparseGraph extends   Graph
     public int []To;
     public int Head[];
     public int Next[];
+
+    public int Weight[];
+    int edgeCapacity;
+
+
+
     public SparseGraph(int vertexCount,int edgeCapacity)
     {
         From=new int[edgeCapacity];
@@ -25,6 +31,7 @@ public class SparseGraph extends   Graph
         Next=new int[edgeCapacity];
         Arrays.fill(Next,-1);
         Arrays.fill(Head,-1);
+        this.edgeCapacity=edgeCapacity;
 
         this.vertexCount=vertexCount;
         edgeCount=0;
@@ -39,7 +46,21 @@ public class SparseGraph extends   Graph
         Next[edgeCount]=Head[from];
         Head[from]=edgeCount;
         ++edgeCount;
+
     }
+
+
+    @Override
+    public void addEdge(int from, int to, int weight)
+    {
+        if(Weight==null)  {
+            Weight=new int[edgeCapacity];
+        }
+        addEdge(from,to);
+        Weight[edgeCount-1]=weight;
+    }
+
+
 
     @Override
     public List<Edge> getIncidentEdges(int vertexId)
@@ -59,4 +80,6 @@ public class SparseGraph extends   Graph
     {
         Head[vertexId]=-1;
     }
+
+
 }

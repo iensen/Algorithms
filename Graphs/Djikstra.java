@@ -21,7 +21,7 @@ public class Djikstra
     }
 
 
-    public long[] run(Graph g, int source,int to)
+    public long[] run(SparseGraph g, int source,int to)
     {
         long distance[]=new long[g.getVertexCount()];
         Arrays.fill(distance,Long.MAX_VALUE);
@@ -38,10 +38,11 @@ public class Djikstra
             long d=top.first;
             if(v==to) break;
 
-              if(distance[v]!=d) continue;;
-              for (Edge e:g.getIncidentEdges(v)) {
-                int v2 = e.to;
-                long weight = e.weight;
+              if(distance[v]!=d) continue;
+              int p=g.Head[v];
+              while (p!=-1) {
+                int v2 = g.To[p];
+                long weight = g.Weight[p];
                 if(vertexWeights!=null) {
                     weight+=vertexWeights[v]-vertexWeights[v2];
                 }
@@ -49,6 +50,7 @@ public class Djikstra
                     distance[v2] = distance[v] + weight;
                     Q.add(new Pair(distance[v2], v2));
                 }
+                p=g.Next[p];
             }
         }
         return distance;

@@ -1,76 +1,129 @@
-/**
- * Created with IntelliJ IDEA.
- * User: iensen
- * Date: 10/29/12
- * Time: 12:35 PM
- * To change this template use File | Settings | File Templates.
- */
-package iensen.IO;
-import java.awt.*;
-import java.io.BufferedReader;
+package  iensen.IO;
+
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.StringTokenizer;
-
-/**
- * Created with IntelliJ IDEA.
- * User: iensen
- * Date: 10/29/12
- * Time: 10:19 AM
- * To change this template use File | Settings | File Templates.
- */
+import java.math.BigInteger;
+import java.util.InputMismatchException;
 
 public class InputReader {
-    StringTokenizer st;
-    BufferedReader in;
-    public InputReader(InputStream ins)
-    {
-        in = new BufferedReader(new InputStreamReader(ins));
+
+    private InputStream stream;
+    int curCharIndex = 0;
+    int charsInBuf = 0;
+     byte buf[] = new byte[16*1024];
+
+    public InputReader(InputStream stream) {
+        this.stream = stream;
     }
 
-    public String nextToken()
-    {
-        while(st==null || !st.hasMoreTokens())
-        {
+
+    public int readChar() {
+
+        if (curCharIndex >= charsInBuf) {
+            curCharIndex = 0;
             try {
-                st=new StringTokenizer(in.readLine());
+                charsInBuf = stream.read(buf);
             } catch (IOException e) {
-                e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+                throw new InputMismatchException();
             }
+            if (charsInBuf <= 0)
+                return -1;
         }
-        return st.nextToken();
-    }
-    public int nextInt()
-    {
-
-        return Integer.parseInt(nextToken());
+        return buf[curCharIndex++];
     }
 
-    public double nextDouble()
-    {
+
+    public String nextLine() {
+        StringBuilder buf = new StringBuilder();
+        int c = readChar();
+        while (c != '\n' && c != -1) {
+            if (c != '\r')
+                buf.appendCodePoint(c);
+                c = readChar();
+        }
+        return buf.toString();
+    }
+
+    public int nextInt() {
+
+        int c;
+        do {
+            c = readChar();
+        }while(isWhitespace(c));
+
+        int sign = 1;
+        if (c == '-') {
+            c = readChar();
+            sign = -1;
+
+        }
+        int res = 0;
+        do {
+            res *= 10;
+            res += c - '0';
+            c = readChar();
+        } while (!isWhitespace(c) && c!=-1);
+        return sign * res;
+    }
+
+    public long nextLong() {
+
+        int c;
+        do {
+            c = readChar();
+        }while(isWhitespace(c));
+
+        int sign = 1;
+        if (c == '-') {
+            c = readChar();
+            sign = -1;
+
+        }
+        long res = 0;
+        do {
+            res *= 10;
+            res += c - '0';
+            c = readChar();
+        } while (!isWhitespace(c) && c!=-1);
+        return sign * res;
+    }
+
+
+
+
+    public String nextToken() {
+        int c;
+        do {
+            c = readChar();
+        }while(isWhitespace(c));
+
+        StringBuilder res = new StringBuilder();
+        do {
+            res.appendCodePoint(c);
+            c = readChar();
+        } while (!isWhitespace(c) && c!=-1);
+        return res.toString();
+    }
+
+    /*
+    * For the purpose of compatibilty with Chelper Chrome extension
+     */
+
+    public String next() {
+        return nextToken();
+    }
+
+
+    public double nextDouble() {
         return Double.parseDouble(nextToken());
     }
-    public long nextLong()
-    {
-       return  Long.parseLong(nextToken());
-    }
-    public String nextLine()  {
-        try {
-            return in.readLine();
-        } catch (IOException e) {
-           // e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-            return null;
-        }
 
-    }
-    public char nextChar()  {
-        try {
-            return (char)in.read();
-        } catch (IOException e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-        }
-        return 0;
-    }
 
+
+    private boolean isWhitespace(int c) {
+        return  c==' ' || c=='\n'|| c=='\r' || c=='\t';
+    }
 }
+
+
+
