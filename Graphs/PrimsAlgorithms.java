@@ -17,6 +17,8 @@ public class PrimsAlgorithms
 
        Graph mst=new SparseGraph(g.getVertexCount(),g.getEdgeCount());
        int n = g.edgeCount;
+       if(n == 0)
+           return mst;
        boolean[] used = new boolean[n];
        int[] priority = new int[n];
        int[] prev=new int[g.getVertexCount()];

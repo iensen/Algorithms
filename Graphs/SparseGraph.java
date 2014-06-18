@@ -25,12 +25,15 @@ public class SparseGraph extends   Graph
 
     public SparseGraph(int vertexCount,int edgeCapacity)
     {
-        From=new int[edgeCapacity];
-        To=new int[edgeCapacity];
-        Head=new int[vertexCount];
-        Next=new int[edgeCapacity];
-        Arrays.fill(Next,-1);
-        Arrays.fill(Head,-1);
+        if(edgeCapacity>0) {
+            From = new int[edgeCapacity];
+            To = new int[edgeCapacity];
+            Next = new int[edgeCapacity];
+            Arrays.fill(Next, -1);
+
+        }
+        Head = new int[vertexCount];
+        Arrays.fill(Head, -1);
         this.edgeCapacity=edgeCapacity;
 
         this.vertexCount=vertexCount;
@@ -69,6 +72,9 @@ public class SparseGraph extends   Graph
        int p=Head[vertexId];
        while(p!=-1) {
            Edge e=new Edge(To[p]);
+           if(Weight!=null)  {
+               e.weight = Weight[p];
+           }
            list.add(e);
            p=Next[p];
        }
