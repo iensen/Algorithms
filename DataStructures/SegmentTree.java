@@ -129,7 +129,7 @@ public class SegmentTree
             int middleIndex = (coverLIdx + coverRIdx) / 2;
             if (index <= middleIndex)
                 //update left child
-                update(segmentTreeIdx * 2, coverLIdx, coverRIdx, index, new_val);
+                update(segmentTreeIdx * 2, coverLIdx, middleIndex, index, new_val);
             else//update right child
                 update(segmentTreeIdx * 2 + 1, middleIndex + 1, coverRIdx, index, new_val);
             //update parent after updating left and right children
