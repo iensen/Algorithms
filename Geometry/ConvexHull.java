@@ -61,7 +61,19 @@ public class ConvexHull {
         return result;
 
     }
-}
+
+
+    public static double getConvexHullLength(Point2D[] points) {
+        Point2D[] convexHull = ConvexHull.getConvexHull(points);
+        double dist = 0;
+        for(int i=1;i<convexHull.length;i++) {
+            dist += Math.hypot(convexHull[i].getX()-convexHull[i-1].getX(), convexHull[i].getY()-convexHull[i-1].getY());
+        }
+        dist += Math.hypot(convexHull[convexHull.length-1].getX()-convexHull[0].getX(), convexHull[convexHull.length-1].getY()-convexHull[0].getY());
+        return dist;
+    }
+ }
+
 
 class PointComparator implements Comparator<Point2D> {
 
