@@ -71,7 +71,7 @@ public class ArrayUtils
 
     public static void reverse(int []a)
      {
-      for(int i = 0; i < a.length; i++)
+      for(int i = 0; i < a.length/2; i++)
       {
         int temp = a[i];
         a[i] = a[a.length - i - 1];
