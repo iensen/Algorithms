@@ -32,6 +32,10 @@ public class InputReader {
         return buf[curCharIndex++];
     }
 
+    public void putCharBack(int c) {
+        buf[--curCharIndex] = (byte) c;
+    }
+
 
     public String nextLine() {
         StringBuilder buf = new StringBuilder();
@@ -41,6 +45,7 @@ public class InputReader {
                 buf.appendCodePoint(c);
                 c = readChar();
         }
+
         return buf.toString();
     }
 
@@ -63,6 +68,7 @@ public class InputReader {
             res += c - '0';
             c = readChar();
         } while (!isWhitespace(c) && c!=-1);
+        if( c != -1) putCharBack(c);
         return sign * res;
     }
 
@@ -85,6 +91,7 @@ public class InputReader {
             res += c - '0';
             c = readChar();
         } while (!isWhitespace(c) && c!=-1);
+        if( c != -1) putCharBack(c);
         return sign * res;
     }
 
@@ -102,6 +109,7 @@ public class InputReader {
             res.appendCodePoint(c);
             c = readChar();
         } while (!isWhitespace(c) && c!=-1);
+        if( c != -1) putCharBack(c);
         return res.toString();
     }
 
