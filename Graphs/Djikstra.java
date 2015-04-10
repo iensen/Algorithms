@@ -21,7 +21,7 @@ public class Djikstra
     }
 
 
-    public long[] run(SparseGraph g, int source,int to)
+    public long[] run(SparseGraph g, int source, int to)
     {
         long distance[]=new long[g.getVertexCount()];
         Arrays.fill(distance,Long.MAX_VALUE);
