@@ -71,11 +71,30 @@ public class ArrayUtils
 
     public static void reverse(int []a)
      {
-      for(int i = 0; i < a.length; i++)
+      for(int i = 0; i < a.length/2; i++)
       {
         int temp = a[i];
         a[i] = a[a.length - i - 1];
         a[a.length - i - 1] = temp;
       }
      }
+
+
+    boolean next_permutation(int[] p) {
+        for (int a = p.length - 2; a >= 0; --a)
+            if (p[a] < p[a + 1])
+                for (int b = p.length - 1;; --b)
+                    if (p[b] > p[a]) {
+                        int t = p[a];
+                        p[a] = p[b];
+                        p[b] = t;
+                        for (++a, b = p.length - 1; a < b; ++a, --b) {
+                            t = p[a];
+                            p[a] = p[b];
+                            p[b] = t;
+                        }
+                        return true;
+                    }
+        return false;
+    }
 }
